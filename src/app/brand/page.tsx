@@ -1,7 +1,8 @@
+"use client";
 import InputField from "@/components/inputs/input_field";
 import InputDropdown from "@/components/inputs/input_dropdown";
 import ButtonRound from "@/components/buttons/button_round";
-import TableProduct from "@/components/tables/table_product";
+import Table from "@/components/tables/table";
 import Add from "@/app/product/add";
 
 
@@ -25,7 +26,7 @@ export default function Page() {
                     <ButtonRound label={"Add Brand"} fn={() => {
                     }} />
                 </div>
-                <TableProduct />
+                <Table />
             </div>
             {/*<div tabIndex={-1} className="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center">*/}
             {/*    <Add/>*/}
