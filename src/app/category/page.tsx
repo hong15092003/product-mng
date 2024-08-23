@@ -12,11 +12,9 @@ export default function Page() {
     return (
         <>
             <div className="flex flex-col gap-5 p-10 ">
-                <h1 className=" text-3xl font-bold mb-3">Product</h1>
+                <h1 className=" text-3xl font-bold mb-3">Category</h1>
                 <div className="flex flex-row gap-4 items-end">
-                    <InputField label="Product Name" fn={() => {
-                    }} />
-                    <InputField label="Price" fn={() => {
+                    <InputField label="Category Name" fn={() => {
                     }} />
                     <ButtonRound label="search" fn={() => {
                     }} />
@@ -24,7 +22,7 @@ export default function Page() {
                 </div>
 
                 <div className="mt-10 flex gap-5">
-                    <ButtonRound label={"Add Product"} fn={() => {
+                    <ButtonRound label={"Add Category"} fn={() => {
                     }} />
                 </div>
                 <TableProduct />
