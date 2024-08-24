@@ -1,181 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import ButtonRound from "@/components/buttons/button_round";
 
 
-export default function Table() {
-    const products = [
-        {
-            id: 1,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 2,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 3,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 4,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 5,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 6,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 7,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 8,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 9,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 10,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 11,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 12,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 13,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 14,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
-        {
-            id: 15,
-            product_name: "MacBook Pro 17",
-            color: "Black",
-            quantity: 10,
-            sell_price: "$2999",
-            original_price: "$3999",
-            describe: "This is a good product",
-            subcate_id: "1",
-            status_id: "1"
-        },
+export default function Table({ list, titles }: { list: Array<any>, titles: Array<string> }) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const rowsPerPage = 10;
 
 
-    ]
-
-    const key: Array<string> = ["id", 'product_name', 'color', 'quantity', 'sell_price', 'original_price'];
-    const titles = () => {
-        return key.map((title, index) => {
+    const titlesRemap = () => {
+        return titles.map((title, index) => {
 
             return title.replace('_', ' ')
 
@@ -183,11 +16,17 @@ export default function Table() {
         })
     }
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const rowsPerPage = 10;
+
+    const sortList = () => {
+        return list
+    }
+
+
+
+
 
     const handleNextPage = () => {
-        if (currentPage < Math.ceil(products.length / rowsPerPage)) {
+        if (currentPage < Math.ceil(sortList().length / rowsPerPage)) {
             setCurrentPage(currentPage + 1);
         }
     };
@@ -199,7 +38,8 @@ export default function Table() {
     };
 
     const startIndex = (currentPage - 1) * rowsPerPage;
-    const selectedProducts = products.slice(startIndex, startIndex + rowsPerPage);
+    const selectedProducts = sortList().slice(startIndex, startIndex + rowsPerPage);
+
 
     return (
         <>
@@ -207,9 +47,11 @@ export default function Table() {
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            {titles().map((title, index) => (
+                            {titlesRemap().map((title, index) => (
                                 <th key={index} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {title}
+                                    <div className="flex flex-row">
+                                        {title}
+                                    </div>
                                 </th>
                             ))}
                             <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -218,11 +60,16 @@ export default function Table() {
                         </tr>
                     </thead>
                     <tbody className="">
+                        {selectedProducts.length === 0 && (
+                            <tr>
+                                <td colSpan={titles.length + 1} className="text-center py-4">No data found</td>
+                            </tr>
+                        )}
                         {selectedProducts.map((product, index) => (
                             <tr key={index}>
-                                {key.map((title, index) => (
+                                {titles.map((title, index) => (
                                     <td key={index} className={`${title.includes('name') && 'text-white'} px-6 py-4 `}>
-                                        {(product as any)[title]}
+                                        {(product as any)[title]}{title.includes('price') && '$'}
                                     </td>
                                 ))}
                                 <td className="px-6 py-4 text-right">
